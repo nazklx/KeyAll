@@ -11,7 +11,6 @@
     <PackageReference Include="FlaUI.Core" Version="4.0.0" />
     <PackageReference Include="FlaUI.UIA2" Version="4.0.0" />
     <PackageReference Include="FlaUI.UIA3" Version="4.0.0" />
-    <PackageReference Include="MSBuild.ILMerge.Task" Version="1.1.3" />
   </ItemGroup>
 
 </Project>
