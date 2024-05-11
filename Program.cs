@@ -7,7 +7,7 @@ namespace KeyAll
     {
         static void Main(string[] args)
         {
-            Application.Launch("Notepad.exe");
+            Application.Launch("Notepad.exe")
         }
     }
 }
