@@ -5,14 +5,14 @@ using FlaUI.Core.Conditions;
 using FlaUI.UIA3;
 using FlaUI.UIA3.EventHandlers;
 
-namespace KeyAll
+namespace KeyAll.core
 {
     class Root
     {
         static void Main(string[] args)
         {
             Hkd hkdaemon = new Hkd();
-            var application = FlaUI.Core.Application.Launch("Notepad.exe");
+            var application = Application.Launch("Notepad.exe");
 
             var mainWindow = application.GetMainWindow(new UIA3Automation());
             ConditionFactory cf = new ConditionFactory(new UIA3PropertyLibrary());

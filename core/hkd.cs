@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using FlaUI.Core;
 
-namespace KeyAll
+namespace KeyAll.core
 {
     internal class Hkd
-    { 
-        public Hkd() 
+    {
+        public Hkd()
         {
             Application.Launch("Notepad.exe");
         }
