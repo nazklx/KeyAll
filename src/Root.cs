@@ -4,6 +4,7 @@ using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Conditions;
 using FlaUI.UIA3;
 using FlaUI.UIA3.EventHandlers;
+using KeyAll.src;
 
 namespace KeyAll.core
 {
@@ -11,7 +12,11 @@ namespace KeyAll.core
     {
         static void Main(string[] args)
         {
+            // Initialize other classes
             Hkd hkdaemon = new Hkd();
+            Tbm taskbarmenu = new Tbm();
+
+            // Open notepad, find close button and press it
             var application = Application.Launch("Notepad.exe");
 
             var mainWindow = application.GetMainWindow(new UIA3Automation());

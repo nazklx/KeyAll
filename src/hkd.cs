@@ -11,6 +11,7 @@ namespace KeyAll.core
     {
         public Hkd()
         {
+            // Daemon for button presses/keystrokes
             Application.Launch("Notepad.exe");
         }
     }
