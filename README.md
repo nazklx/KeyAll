@@ -11,7 +11,7 @@ Install on Windows command line:
 
 KeyAll is (going to be) a open-souce, highly customizable all-in-one solution for manipulating and interacting with applications and Windows all without the mouse. Efficiency is the name of the game, the less you need to touch the mouse the better.
 
-Screw komorebi and closed-source solutions, we got you covered.
+Komorebi is great and all, but let's combine all the best efficiency softwares into one open-source portable package.
 
 ## Roadmap
 
