@@ -2,7 +2,9 @@
 using FlaUI.Core.Conditions;
 using FlaUI.UIA3;
 using System.Runtime.InteropServices;
+using System.Windows.Automation;
 using System.Windows.Forms;
+
 
 namespace KeyAll.core
 {
@@ -97,6 +99,7 @@ namespace KeyAll.core
 
                 var mainWindow = application.GetMainWindow(new UIA3Automation());
                 ConditionFactory cf = new ConditionFactory(new UIA3PropertyLibrary());
+
 
 
                 // logic for highlighting elements (sequentially, this isnt refined at all) 
