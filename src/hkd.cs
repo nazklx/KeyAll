@@ -13,6 +13,28 @@ namespace KeyAll.core
     // Most of this is borrowed from stackoverflow, this will have to be modified later for customization and optimization
     public static class Hkd
     {
+        // I'm going to squeeze this in here, I'm so glad I don't have to do this manually 
+        // wip
+        public static int SwitchToKeyNum(String[] str)
+        {
+            foreach (string l in str)
+            {
+                foreach (string s in Enum.GetNames(typeof(System.Windows.Forms.Keys)))
+                {
+                    if (l == s)
+                    {
+                        // This does not work yet
+                        //return (int)System.Windows.Forms.Keys.s;
+                        return 0;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+            return 0;
+        }
         public static event EventHandler<HotKeyEventArgs> HotKeyPressed;
 
         public static int RegisterHotKey(Keys key, KeyModifiers modifiers)
