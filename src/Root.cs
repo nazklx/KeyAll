@@ -74,14 +74,14 @@ namespace KeyAll.core
             Console.ReadLine();
 
 
-            // Open notepad, find close button and press it
-            var application = Application.Launch("Notepad.exe");    
+            // Open notepad, find child elements and highlight them (happens when you press enter in command line)
+            var application = FlaUI.Core.Application.Launch("notepad.exe");
 
             var mainWindow = application.GetMainWindow(new UIA3Automation());
             ConditionFactory cf = new ConditionFactory(new UIA3PropertyLibrary());
 
 
-            // logic for highlighting elements
+            // logic for highlighting elements (sequentially, this isnt refined at all) 
             var childElements = mainWindow.FindAllChildren();
             foreach ( var item in childElements ) 
             {
