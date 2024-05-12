@@ -10,6 +10,7 @@ using FlaUI.Core;
 
 namespace KeyAll.core
 {
+    // Most of this is borrowed from stackoverflow, this will have to be modified later for customization and optimization
     public static class Hkd
     {
         public static event EventHandler<HotKeyEventArgs> HotKeyPressed;
