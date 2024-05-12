@@ -103,12 +103,8 @@ namespace KeyAll.core
 
 
                 // logic for highlighting elements (sequentially, this isnt refined at all) 
-                var childElements = mainWindow.FindAllChildren();
-                foreach (var item in childElements)
-                {
-                    item.DrawHighlight();
-                    Thread.Sleep(500);
-                }
+                var childElements = mainWindow.FindFirstDescendant(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Button)).DrawHighlight();
+
             }
 
 
