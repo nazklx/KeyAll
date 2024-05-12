@@ -17,13 +17,22 @@ namespace KeyAll.core
             Tbm taskbarmenu = new Tbm();
 
             // Open notepad, find close button and press it
-            var application = Application.Launch("Notepad.exe");
+            var application = Application.Attach("Notepad.exe");
 
             var mainWindow = application.GetMainWindow(new UIA3Automation());
             ConditionFactory cf = new ConditionFactory(new UIA3PropertyLibrary());
 
-            mainWindow.FindFirstDescendant(cf.ByName("Close")).AsButton().Click();
 
+            // logic for highlighting elements
+            var childElements = mainWindow.FindAllChildren();
+            foreach ( var item in childElements ) 
+            {
+                item.DrawHighlight();
+                Thread.Sleep(500);
+            }
+
+            // shutdown after labeling descendants
+            mainWindow.Close();
         }
     }
 }
