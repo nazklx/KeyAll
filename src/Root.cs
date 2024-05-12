@@ -75,19 +75,8 @@ namespace KeyAll.core
 
 
             // Open notepad, find child elements and highlight them (happens when you press enter in command line)
-            var application = FlaUI.Core.Application.Launch("notepad.exe");
-
-            var mainWindow = application.GetMainWindow(new UIA3Automation());
-            ConditionFactory cf = new ConditionFactory(new UIA3PropertyLibrary());
 
 
-            // logic for highlighting elements (sequentially, this isnt refined at all) 
-            var childElements = mainWindow.FindAllChildren();
-            foreach ( var item in childElements ) 
-            {
-                item.DrawHighlight();
-                Thread.Sleep(500);
-            }
                                                     
             // I'm testing with having an overlay here, this is being a bit weird
             /*f.BackColor = Color.White;
@@ -100,6 +89,26 @@ namespace KeyAll.core
         }
         static void HotKeyManager_HotKeyPressed(object sender, HotKeyEventArgs e)
         {
+
+            // logic for grabbing main window and highlighting elements [doesnt grab main window atm]
+            static void findBtns()
+            {
+                var application = FlaUI.Core.Application.Launch("notepad.exe");
+
+                var mainWindow = application.GetMainWindow(new UIA3Automation());
+                ConditionFactory cf = new ConditionFactory(new UIA3PropertyLibrary());
+
+
+                // logic for highlighting elements (sequentially, this isnt refined at all) 
+                var childElements = mainWindow.FindAllChildren();
+                foreach (var item in childElements)
+                {
+                    item.DrawHighlight();
+                    Thread.Sleep(500);
+                }
+            }
+
+
             // Go through HotKeyEventArgs to see what keystroke was pressed and execute code
             switch (e.Key)
             {
@@ -112,6 +121,7 @@ namespace KeyAll.core
                 // Run test code with Alt+F
                 case Keys.F when e.Modifiers == KeyModifiers.Alt:
                     System.Windows.Forms.MessageBox.Show("Bam");
+                    findBtns();
                     //f.TopMost = true;
                     break;
             }
