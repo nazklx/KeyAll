@@ -1,17 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
-using FlaUI.Core;
-using FlaUI.Core.AutomationElements;
+﻿using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Conditions;
 using FlaUI.UIA3;
-using FlaUI.UIA3.EventHandlers;
-using KeyAll.src;
-using System.Windows.Forms.VisualStyles;
-using System.Reflection;
-using System.Configuration;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace KeyAll.core
 {
@@ -45,7 +36,7 @@ namespace KeyAll.core
             if (args.Length > 0)
             {
                 int i = 0;
-                foreach (var arg in args) 
+                foreach (var arg in args)
                 {
                     flags[i] = arg;
                     i++;
@@ -64,7 +55,7 @@ namespace KeyAll.core
                     }
                 }
             }
-            
+
             [DllImport("kernel32.dll")]
             static extern IntPtr GetConsoleWindow();
 
@@ -76,7 +67,7 @@ namespace KeyAll.core
 
             // Register keystrokes, create event handler and keep console running
             // I'm trying to actually use the config file here, and I'm still figuring that out, until then we're hardcoding each hotkey here on its own line.
-            string[] keystroke = ConfigurationManager.AppSettings["Close"].Split(',');
+            // string[] keystroke = ConfigurationManager.AppSettings["Close"].Split(',');
             Hkd.RegisterHotKey(Keys.A, KeyModifiers.Alt);
             Hkd.RegisterHotKey(Keys.F, KeyModifiers.Alt);
             Hkd.HotKeyPressed += new EventHandler<HotKeyEventArgs>(HotKeyManager_HotKeyPressed);
@@ -90,7 +81,7 @@ namespace KeyAll.core
             ConditionFactory cf = new ConditionFactory(new UIA3PropertyLibrary());
 
             mainWindow.FindFirstDescendant(cf.ByName("Close")).AsButton().Click();
-            
+
             // I'm testing with having an overlay here, this is being a bit weird
             /*f.BackColor = Color.White;
             f.FormBorderStyle = FormBorderStyle.None;
