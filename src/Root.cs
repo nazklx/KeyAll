@@ -1,7 +1,9 @@
 ﻿using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Conditions;
 using FlaUI.UIA3;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows.Automation;
 using System.Windows.Forms;
 
@@ -58,6 +60,7 @@ namespace KeyAll.core
                 }
             }
 
+            // -- imports -- //
             [DllImport("kernel32.dll")]
             static extern IntPtr GetConsoleWindow();
 
@@ -65,7 +68,6 @@ namespace KeyAll.core
             static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
             var handle = GetConsoleWindow();
             ShowWindow(handle, w_visibility);
-
 
             // Register keystrokes, create event handler and keep console running
             // I'm trying to actually use the config file here, and I'm still figuring that out, until then we're hardcoding each hotkey here on its own line.
@@ -95,7 +97,9 @@ namespace KeyAll.core
             // logic for grabbing main window and highlighting elements [doesnt grab main window atm]
             static void findBtns()
             {
-                var application = FlaUI.Core.Application.Launch("notepad.exe");
+                int nProcessID = Process.GetCurrentProcess().Id;
+                
+                var application = FlaUI.Core.Application.Attach(nProcessID); // work in progress, gave up for now. attempt at grabbing current process id and referencing it to find buttons. cant figure it out
 
                 var mainWindow = application.GetMainWindow(new UIA3Automation());
                 ConditionFactory cf = new ConditionFactory(new UIA3PropertyLibrary());
@@ -103,11 +107,11 @@ namespace KeyAll.core
 
 
                 // logic for highlighting elements (sequentially, this isnt refined at all) 
-                var childElements = mainWindow.FindAllDescendants(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Button));
-                foreach ( var item in childElements ) 
+                var childElements = mainWindow.FindAllDescendants(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Button)); // need if/or logic, sometimes we need buttons, sometimes we need menu items
+                foreach ( var item in childElements )                                                                                   // eg. if varString = file,edit,help, find menu item, otherwise find button
                 {
                     item.DrawHighlight();
-                    
+                    Thread.Sleep(500);
                 }
 
             }
@@ -124,8 +128,8 @@ namespace KeyAll.core
                     break;
                 // Run test code with Alt+F
                 case Keys.F when e.Modifiers == KeyModifiers.Alt:
-                    System.Windows.Forms.MessageBox.Show("Bam");
                     findBtns();
+                    System.Windows.Forms.MessageBox.Show("Bam");
                     //f.TopMost = true;
                     break;
             }
